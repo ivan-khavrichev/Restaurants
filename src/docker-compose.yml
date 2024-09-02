@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  elasticsearch:
+    container_name: elasticsearch
+    image: elasticsearch:8.12.2
+    ports:
+      - "9200:9200"
+      - "8888:9200"
+    environment:
+      - ELASTIC_PASSWORD=password
+      - node.name=elasticsearch
+      - cluster.name=docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
